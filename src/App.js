@@ -1,6 +1,6 @@
 import { Box, Container } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import City from "./pages/City/City";
 import Error from "./pages/Error/Error";

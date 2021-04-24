@@ -6,7 +6,8 @@ const useStyles = makeStyles((theme) => ({
   input: {
     backgroundColor: "white",
     borderRadius: "5px",
-    margin: '50px 0px'
+    margin: '50px 0px',
+    marginBottom: '5px'
   },
   icon: {
     margin: "10px",
