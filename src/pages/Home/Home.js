@@ -1,7 +1,14 @@
 import React from "react";
+import Last from "../../components/Last/Last";
+import Search from "../../components/Search/Search";
 
 const Home = () => {
-  return <div>Home Page</div>;
+  return (
+    <>
+      <Search />
+      <Last />
+    </>
+  );
 };
 
 export default Home;

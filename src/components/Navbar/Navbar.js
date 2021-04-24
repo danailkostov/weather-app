@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     display: "flex",
-    justifyContenr: "space-between",
+    justifyContent: "space-between",
   },
 }));
 

@@ -18,7 +18,7 @@ function App() {
             <Route path="*" component={Error} />
           </Switch>
         </Container>
-        <Footer />
+        {/* <Footer /> */}
       </Box>
     </Router>
   );
