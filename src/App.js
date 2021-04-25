@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
   },
+  container: {
+    position: "relative",
+  },
 }));
 
 function App() {
@@ -23,7 +26,7 @@ function App() {
     <Router>
       <Box className={classes.wrapper}>
         <Navbar />
-        <Container>
+        <Container className={classes.container}>
           <Switch>
             <Route path="/" component={Home} exact />
             <Route path="/city/:id" component={City} exact />

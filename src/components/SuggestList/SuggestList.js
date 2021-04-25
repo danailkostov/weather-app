@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     borderTop: "1px solid red",
     paddingBottom: "0px",
     paddingTop: "0px",
+    position: "absolute",
+    width: "96.3%",
+    zIndex: "1",
   },
 }));
 
