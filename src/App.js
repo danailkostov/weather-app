@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
   },
   container: {
-    position: "relative",
-  },
+    position: 'relative'
+  }
 }));
 
 function App() {
