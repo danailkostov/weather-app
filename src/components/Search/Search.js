@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Search = () => {
   const classes = useStyles();
-  const { handleAutocomplete } = useGlobalContext();
+  const { handleAutocomplete, handleSuggestion } = useGlobalContext();
   const [value, setValue] = useState("");
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -49,6 +49,8 @@ const Search = () => {
       fullWidth
       value={value}
       onChange={handleChange}
+      onBlur={() => handleSuggestion(false)}
+      onFocus={() => handleSuggestion(true)}
     />
   );
 };
