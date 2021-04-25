@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const City = () => {
-    return (
-        <div>
-            City Page
-        </div>
-    )
-}
+  return <div style={{ color: "white" }}>City Page</div>;
+};
 
-export default City
+export default City;
