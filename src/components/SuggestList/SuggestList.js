@@ -22,18 +22,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SuggestList = () => {
-  const { suggestions } = useGlobalContext();
+  const { suggestions, handleTowns } = useGlobalContext();
   const classes = useStyles();
   let history = useHistory();
-  const handleClick = (id) => {
-    history.push(`/city/${id}`);
+  const handleClick = (name, country) => {
+    history.push(`/city/${name.split(',')[0]}`);
+    const townObj = { name: name.split(",")[0], country: country };
+    handleTowns(townObj);
   };
   return (
     <List className={classes.list}>
-      {suggestions.map(({ name, id }) => {
+      {suggestions.map(({ name, country }) => {
         return (
           <>
-            <ListItem button onClick={() => handleClick(id)}>
+            <ListItem button onClick={() => handleClick(name, country)}>
               <ListItemText primary={name} />
             </ListItem>
             <Divider />
