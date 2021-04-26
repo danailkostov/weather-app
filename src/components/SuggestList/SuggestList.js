@@ -25,18 +25,21 @@ const SuggestList = () => {
   const { suggestions, handleTowns, handleSuggestion } = useGlobalContext();
   const classes = useStyles();
   let history = useHistory();
-  const handleClick = (name, country) => {
-    history.push(`/city/${name.split(",")[0]}`);
-    const townObj = { name: name.split(",")[0], country: country };
+  const handleClick = (name, country, url) => {
+    history.push(`/city/${url}`);
+    const townObj = { name: name.split(",")[0], country: country, url: url };
     handleTowns(townObj);
     handleSuggestion(false);
   };
   return (
     <List className={classes.list}>
-      {suggestions.map(({ name, country }) => {
+      {suggestions.map(({ name, country, url }) => {
         return (
           <>
-            <ListItem button onMouseDown={() => handleClick(name, country)}>
+            <ListItem
+              button
+              onMouseDown={() => handleClick(name, country, url)}
+            >
               <ListItemText primary={name} />
             </ListItem>
             <Divider />

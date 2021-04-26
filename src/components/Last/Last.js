@@ -15,27 +15,33 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     marginTop: "5px",
-    flexFlow: "row-reverse",
-    justifyContent: "center",
   },
 }));
 
 const Last = () => {
   const classes = useStyles();
   const { lastTowns } = useGlobalContext();
+  console.log(lastTowns);
   let history = useHistory();
-  const handleClick = (name) => {
-    history.push(`/city/${name}`);
+  const handleClick = (url) => {
+    history.push(`/city/${url}`);
   };
   return (
-    <Grid component="section" container spacing={2} className={classes.grid}>
-      {lastTowns.map(({ name, country }) => {
+    <Grid
+      component="section"
+      container
+      spacing={2}
+      className={classes.grid}
+      direction="row-reverse"
+      justify="center"
+    >
+      {lastTowns.map(({ name, country, url }) => {
         return (
-          <Grid item component="article" xs={12} sm={4}>
+          <Grid item component="article" xs={12} sm={6} md={4}>
             <Paper
               variant="outlined"
               className={classes.paper}
-              onClick={() => handleClick(name)}
+              onClick={() => handleClick(url)}
             >
               <Typography>{name}</Typography>
               <Typography>{country}</Typography>
