@@ -26,7 +26,7 @@ const Current = ({ current, forecast }) => {
   } = current;
   const { forecastday } = forecast;
   const {
-    day: { maxtemp_c, maxtemp_f },
+    day: { maxtemp_c, maxtemp_f, maxwind_kph },
   } = forecastday[0];
   const classes = useStyles();
   return (
@@ -35,7 +35,9 @@ const Current = ({ current, forecast }) => {
         <Typography variant="body2" className={classes.headline}>
           CURRENT WEATHER
         </Typography>
-        <Typography variant="body2">{last_updated}</Typography>
+        <Typography variant="body2" style={{ fontWeight: "700" }}>
+          {last_updated}
+        </Typography>
         <div
           id="condition"
           style={{ display: "flex", justifyContent: "center" }}
@@ -46,7 +48,7 @@ const Current = ({ current, forecast }) => {
               {temp_c}
               <sup style={{ fontSize: "40px" }}>c</sup>
             </Typography>
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" style={{ fontWeight: "700" }}>
               Feels like {feelslike_c}
               <sup>c</sup>
             </Typography>
@@ -59,8 +61,12 @@ const Current = ({ current, forecast }) => {
             marginTop: "15px",
           }}
         >
-          <Typography variant="subtitle2">{text}</Typography>
-          <Typography variant="subtitle2">Humidity: {humidity}</Typography>
+          <Typography variant="subtitle2" style={{ fontWeight: "700" }}>
+            {text}
+          </Typography>
+          <Typography variant="subtitle2" style={{ fontWeight: "700" }}>
+            Humidity: {humidity}
+          </Typography>
         </div>
       </Grid>
       <Grid item md={2}></Grid>
@@ -88,8 +94,11 @@ const Current = ({ current, forecast }) => {
             </Typography>
           </div>
         </div>
-        <Typography align="center">
+        <Typography align="center" gutterBottom style={{ fontWeight: "700" }}>
           {forecastday[0].day.condition.text}
+        </Typography>
+        <Typography align="center" style={{ fontWeight: "700" }}>
+          Wind: {maxwind_kph} km/h
         </Typography>
       </Grid>
     </Grid>

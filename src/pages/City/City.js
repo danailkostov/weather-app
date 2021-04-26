@@ -12,6 +12,7 @@ import TabContext from "@material-ui/lab/TabContext";
 import TabList from "@material-ui/lab/TabList";
 import TabPanel from "@material-ui/lab/TabPanel";
 import Current from "../../components/Current/Current";
+import NextDays from "../../components/NextDays/NextDays";
 
 const url = "https://api.weatherapi.com/v1/forecast.json?";
 
@@ -21,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
     },
     boxShadow: "none",
+  },
+  div: {
+    background: "rgba(0,0,0,0.5)",
+    margin: "0px 0px",
   },
 }));
 
@@ -55,12 +60,12 @@ const City = () => {
     return <div>Loading...</div>;
   }
   return (
-    <Container style={{ backgroundColor: "#DCDCDC" }}>
-      <div>
+    <Container>
+      <div className={classes.div}>
         <Typography
           align="center"
           variant="h4"
-          style={{ fontWeight: "700", paddingTop: "15px" }}
+          style={{ fontWeight: "700", paddingTop: "15px", color: "white" }}
         >
           {city
             ? city.location.country === "Bulgaria"
@@ -75,9 +80,17 @@ const City = () => {
             color="transparent"
           >
             <TabList onChange={handleChange}>
-              <Tab label="Current" value="1" />
-              <Tab label="Hourly" value="2" />
-              <Tab label="3 Days" value="3" />
+              <Tab
+                label="Current"
+                value="1"
+                style={{ fontWeight: "700", color: "white" }}
+              />
+              {/* <Tab label="Hourly" value="2" /> */}
+              <Tab
+                label="3 Days"
+                value="3"
+                style={{ fontWeight: "700", color: "white" }}
+              />
             </TabList>
           </AppBar>
           <TabPanel value="1">
@@ -85,8 +98,10 @@ const City = () => {
               <Current current={city.current} forecast={city.forecast} />
             )}
           </TabPanel>
-          <TabPanel value="2">Item Two</TabPanel>
-          <TabPanel value="3">Item Three</TabPanel>
+          {/* <TabPanel value="2">Item Two</TabPanel> */}
+          <TabPanel value="3">
+            {city && <NextDays forecast={city.forecast} />}
+          </TabPanel>
         </TabContext>
       </div>
     </Container>
