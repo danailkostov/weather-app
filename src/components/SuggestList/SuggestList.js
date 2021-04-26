@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "0px",
     paddingTop: "0px",
     position: "absolute",
-    width: "96.3%",
+    width: "100%",
     zIndex: "1",
   },
 }));
