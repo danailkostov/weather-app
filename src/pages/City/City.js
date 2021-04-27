@@ -7,12 +7,13 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import TabContext from "@material-ui/lab/TabContext";
 import TabList from "@material-ui/lab/TabList";
 import TabPanel from "@material-ui/lab/TabPanel";
 import Current from "../../components/Current/Current";
 import NextDays from "../../components/NextDays/NextDays";
+import Error from "../Error/Error";
 
 const url = "https://api.weatherapi.com/v1/forecast.json?";
 
@@ -35,6 +36,7 @@ const City = () => {
   const [city, setCity] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [value, setValue] = React.useState("1");
+  let history = useHistory();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -50,6 +52,7 @@ const City = () => {
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      history.push("/error");
     }
   };
 

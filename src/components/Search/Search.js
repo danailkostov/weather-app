@@ -2,6 +2,7 @@ import { InputBase, makeStyles } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import { useGlobalContext } from "../../context/context";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Search = () => {
+  let history = useHistory();
   const classes = useStyles();
   const { handleAutocomplete, handleSuggestion } = useGlobalContext();
   const [value, setValue] = useState("");
@@ -41,17 +43,24 @@ const Search = () => {
     );
   }, [value]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    history.push(`/city/${value}`);
+  };
+
   return (
-    <InputBase
-      className={classes.input}
-      placeholder="Find Location"
-      startAdornment={<SearchIcon className={classes.icon} />}
-      fullWidth
-      value={value}
-      onChange={handleChange}
-      onBlur={() => handleSuggestion(false)}
-      onFocus={() => handleSuggestion(true)}
-    />
+    <form onSubmit={handleSubmit}>
+      <InputBase
+        className={classes.input}
+        placeholder="Find Location"
+        startAdornment={<SearchIcon className={classes.icon} />}
+        fullWidth
+        value={value}
+        onChange={handleChange}
+        onBlur={() => handleSuggestion(false)}
+        onFocus={() => handleSuggestion(true)}
+      />
+    </form>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 
 const WeatherAppContext = React.createContext();
 
@@ -16,13 +16,20 @@ const reducer = (state, action) => {
       if (state.lastTowns.length > 2) {
         const towns = state.lastTowns.slice(1);
         const updTowns = towns.concat(action.payload);
+        localStorage.setItem("test1", JSON.stringify(updTowns));
         return { ...state, lastTowns: updTowns };
       }
+      localStorage.setItem(
+        "test1",
+        JSON.stringify(state.lastTowns.concat(action.payload))
+      );
       return { ...state, lastTowns: state.lastTowns.concat(action.payload) };
     case "is_suggestion_open":
       return { ...state, isSuggestionOpen: action.payload };
     case "temp":
       return { ...state, tempC: !state.tempC };
+    case "local_storage":
+      return { ...state, lastTowns: action.payload };
     default:
       return state;
   }
@@ -47,9 +54,21 @@ const WeatherAppContextProvider = ({ children }) => {
     dispatch({ type: "temp" });
   };
 
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("test1"));
+    dispatch({ type: "local_storage", payload: data });
+    // console.log(data);
+  }, []);
+
   return (
     <WeatherAppContext.Provider
-      value={{ ...state, handleAutocomplete, handleTowns, handleSuggestion, handleTemp }}
+      value={{
+        ...state,
+        handleAutocomplete,
+        handleTowns,
+        handleSuggestion,
+        handleTemp,
+      }}
     >
       {children}
     </WeatherAppContext.Provider>

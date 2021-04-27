@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 const Last = () => {
   const classes = useStyles();
   const { lastTowns } = useGlobalContext();
-  console.log(lastTowns);
   let history = useHistory();
   const handleClick = (url) => {
     history.push(`/city/${url}`);
