@@ -8,6 +8,7 @@ import {
 import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import Temp from "../Temp/Temp";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -16,13 +17,14 @@ const useStyles = makeStyles((theme) => ({
   btn: {
     color: "white",
   },
-  name: {
-    color: "white",
-    fontWeight: "700",
-  },
   toolbar: {
     display: "flex",
     justifyContent: "space-between",
+  },
+  link: {
+    color: "white",
+    textDecoration: "none",
+    fontWeight: "700",
   },
 }));
 
@@ -36,12 +38,11 @@ const Navbar = () => {
       className={classes.appbar}
     >
       <Toolbar component="nav" className={classes.toolbar}>
-        <Typography className={classes.name} variant="h5">
-          Weather Forecast
+        <Typography variant="h5">
+          <Link to="/" className={classes.link}>
+            Weather Forecast
+          </Link>
         </Typography>
-        {/* <IconButton className={classes.btn}>
-          <MenuIcon />
-        </IconButton> */}
         <Temp />
       </Toolbar>
     </AppBar>
