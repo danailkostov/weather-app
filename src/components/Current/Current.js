@@ -1,6 +1,7 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import { useGlobalContext } from "../../context/context";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   article: {
@@ -31,7 +32,9 @@ const Current = ({ current, forecast }) => {
     day: { maxtemp_c, maxtemp_f, maxwind_kph },
   } = forecastday[0];
   const classes = useStyles();
-  
+  const date = moment(last_updated).format("dddd [-] Do");
+  console.log(date);
+
   return (
     <Grid container component="section">
       <Grid item xs={12} md={5} component="article" className={classes.article}>
@@ -39,7 +42,7 @@ const Current = ({ current, forecast }) => {
           CURRENT WEATHER
         </Typography>
         <Typography variant="body2" style={{ fontWeight: "700" }}>
-          {last_updated}
+          {date}
         </Typography>
         <div
           id="condition"

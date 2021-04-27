@@ -1,6 +1,7 @@
 import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import React from "react";
 import { useGlobalContext } from "../../context/context";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   div: {
@@ -42,7 +43,7 @@ const NextDays = ({ forecast }) => {
                   variant="h4"
                   style={{ fontWeight: "700" }}
                 >
-                  {date}
+                  {moment(date).format("ddd [-] Do")}
                 </Typography>
                 <div className={classes.div}>
                   <Typography style={{ fontWeight: "700" }}>
