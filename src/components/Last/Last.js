@@ -34,7 +34,7 @@ const Last = () => {
       direction="row-reverse"
       justify="center"
     >
-      {lastTowns.map(({ name, country, url }) => {
+      {lastTowns && lastTowns.map(({ name, country, url }) => {
         return (
           <Grid item component="article" xs={12} sm={6} md={4}>
             <Paper
