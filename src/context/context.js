@@ -6,6 +6,7 @@ const initialState = {
   suggestions: [],
   lastTowns: [],
   isSuggestionOpen: false,
+  tempC: true,
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -20,6 +21,8 @@ const reducer = (state, action) => {
       return { ...state, lastTowns: state.lastTowns.concat(action.payload) };
     case "is_suggestion_open":
       return { ...state, isSuggestionOpen: action.payload };
+    case "temp":
+      return { ...state, tempC: !state.tempC };
     default:
       return state;
   }
@@ -40,9 +43,13 @@ const WeatherAppContextProvider = ({ children }) => {
     dispatch({ type: "is_suggestion_open", payload: eventType });
   };
 
+  const handleTemp = () => {
+    dispatch({ type: "temp" });
+  };
+
   return (
     <WeatherAppContext.Provider
-      value={{ ...state, handleAutocomplete, handleTowns, handleSuggestion }}
+      value={{ ...state, handleAutocomplete, handleTowns, handleSuggestion, handleTemp }}
     >
       {children}
     </WeatherAppContext.Provider>

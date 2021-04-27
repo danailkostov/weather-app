@@ -1,5 +1,6 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
+import { useGlobalContext } from "../../context/context";
 
 const useStyles = makeStyles((theme) => ({
   article: {
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Current = ({ current, forecast }) => {
+  const { tempC } = useGlobalContext();
   const {
     last_updated,
     condition: { icon, text },
@@ -29,6 +31,7 @@ const Current = ({ current, forecast }) => {
     day: { maxtemp_c, maxtemp_f, maxwind_kph },
   } = forecastday[0];
   const classes = useStyles();
+  
   return (
     <Grid container component="section">
       <Grid item xs={12} md={5} component="article" className={classes.article}>
@@ -45,12 +48,14 @@ const Current = ({ current, forecast }) => {
           <img src={icon} alt="condition" style={{ width: "80px" }} />
           <div id="degree">
             <Typography variant="h3" className={classes.headline}>
-              {temp_c}
-              <sup style={{ fontSize: "40px" }}>c</sup>
+              {tempC ? temp_c : temp_f}
+              <sup>&#176;</sup>
+              <sup style={{ fontSize: "40px" }}>{tempC ? "C" : "F"}</sup>
             </Typography>
             <Typography variant="subtitle2" style={{ fontWeight: "700" }}>
-              Feels like {feelslike_c}
-              <sup>c</sup>
+              Feels like {tempC ? feelslike_c : feelslike_f}
+              <sup>&#176;</sup>
+              <sup>{tempC ? "C" : "F"}</sup>
             </Typography>
           </div>
         </div>
@@ -89,8 +94,9 @@ const Current = ({ current, forecast }) => {
           />
           <div id="forecast-degree">
             <Typography variant="h3" className={classes.headline}>
-              {maxtemp_c}
-              <sup style={{ fontSize: "40px" }}>c</sup>
+              {tempC ? maxtemp_c : maxtemp_f}
+              <sup>&#176;</sup>
+              <sup style={{ fontSize: "40px" }}>{tempC ? "C" : "F"}</sup>
             </Typography>
           </div>
         </div>

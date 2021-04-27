@@ -1,5 +1,6 @@
 import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import React from "react";
+import { useGlobalContext } from "../../context/context";
 
 const useStyles = makeStyles((theme) => ({
   div: {
@@ -12,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NextDays = ({ forecast }) => {
-  console.log(forecast);
   const classes = useStyles();
+  const { tempC } = useGlobalContext();
   const { forecastday } = forecast;
   return (
     <Grid container spacing={2}>
@@ -45,16 +46,19 @@ const NextDays = ({ forecast }) => {
                 </Typography>
                 <div className={classes.div}>
                   <Typography style={{ fontWeight: "700" }}>
-                    Min: {mintemp_c}
-                    <sup>c</sup>
+                    Min: {tempC ? mintemp_c : mintemp_f}
+                    <sup>&#176;</sup>
+                    <sup>{tempC ? "C" : "F"}</sup>
                   </Typography>
                   <Typography style={{ fontWeight: "700" }}>
-                    Avg: {avgtemp_c}
-                    <sup>c</sup>
+                    Avg: {tempC ? avgtemp_c : avgtemp_f}
+                    <sup>&#176;</sup>
+                    <sup>{tempC ? "C" : "F"}</sup>
                   </Typography>
                   <Typography style={{ fontWeight: "700" }}>
-                    Max: {maxtemp_c}
-                    <span>c</span>
+                    Max: {tempC ? maxtemp_c : maxtemp_f}
+                    <sup>&#176;</sup>
+                    <sup>{tempC ? "C" : "F"}</sup>
                   </Typography>
                 </div>
                 <div

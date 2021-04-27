@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
   },
   div: {
-    background: "rgba(0,0,0,0.5)",
+    background: "rgba(220,220,220,0.3)",
     margin: "0px 0px",
   },
 }));

@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
+import Temp from "../Temp/Temp";
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -38,9 +39,10 @@ const Navbar = () => {
         <Typography className={classes.name} variant="h5">
           Weather Forecast
         </Typography>
-        <IconButton className={classes.btn}>
+        {/* <IconButton className={classes.btn}>
           <MenuIcon />
-        </IconButton>
+        </IconButton> */}
+        <Temp />
       </Toolbar>
     </AppBar>
   );
