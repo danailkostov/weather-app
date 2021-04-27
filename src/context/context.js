@@ -55,8 +55,10 @@ const WeatherAppContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("test1"));
-    dispatch({ type: "local_storage", payload: data });
+    if (localStorage.getItem("test1")) {
+      const data = JSON.parse(localStorage.getItem("test1"));
+      dispatch({ type: "local_storage", payload: data });
+    }
   }, []);
 
   return (
