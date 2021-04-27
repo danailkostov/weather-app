@@ -28,6 +28,15 @@ const useStyles = makeStyles((theme) => ({
     background: "rgba(220,220,220,0.3)",
     margin: "0px 0px",
   },
+  tab: {
+    fontWeight: "700",
+    color: "white",
+  },
+  headline: {
+    fontWeight: "700",
+    paddingTop: "15px",
+    color: "white",
+  },
 }));
 
 const City = () => {
@@ -65,11 +74,7 @@ const City = () => {
   return (
     <Container>
       <div className={classes.div}>
-        <Typography
-          align="center"
-          variant="h4"
-          style={{ fontWeight: "700", paddingTop: "15px", color: "white" }}
-        >
+        <Typography align="center" variant="h4" className={classes.headline}>
           {city
             ? city.location.country === "Bulgaria"
               ? city.location.region
@@ -83,17 +88,8 @@ const City = () => {
             color="transparent"
           >
             <TabList onChange={handleChange}>
-              <Tab
-                label="Current"
-                value="1"
-                style={{ fontWeight: "700", color: "white" }}
-              />
-              {/* <Tab label="Hourly" value="2" /> */}
-              <Tab
-                label="3 Days"
-                value="3"
-                style={{ fontWeight: "700", color: "white" }}
-              />
+              <Tab label="Current" value="1" className={classes.tab} />
+              <Tab label="3 Days" value="2" className={classes.tab} />
             </TabList>
           </AppBar>
           <TabPanel value="1">
@@ -101,8 +97,7 @@ const City = () => {
               <Current current={city.current} forecast={city.forecast} />
             )}
           </TabPanel>
-          {/* <TabPanel value="2">Item Two</TabPanel> */}
-          <TabPanel value="3">
+          <TabPanel value="2">
             {city && <NextDays forecast={city.forecast} />}
           </TabPanel>
         </TabContext>
